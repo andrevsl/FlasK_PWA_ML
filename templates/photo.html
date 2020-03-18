@@ -4,51 +4,113 @@
   <head>
     <title>Picture ML</title>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- MDB icon -->
+    <link rel="icon" href="img/mdb-favicon.ico" type="image/x-icon">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
+    <!-- Google Fonts Roboto -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css')}}">
+    <!-- Material Design Bootstrap -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/mdb.min.css')}}">
+    <!-- Your custom styles (optional) -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css')}}">
 
   </head>
   <body>
     <header>
-      <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <a class="navbar-brand" href="#">FaceRec</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-              <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-              <ul class="navbar-nav">
-                <li class="nav-item active">
-                  <a class="nav-link" href="#">Photo <span class="sr-only">(current)</span></a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="#">Video</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="#">Camera</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link disabled" href="#">Settings</a>
-                </li>
-              </ul>
-            </div>
-      </nav>
-    </header>
+    <nav class="navbar navbar-expand-lg navbar-dark primary-color">
+      <a class="navbar-brand" href="/">Facerec</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item active">
+            <a class="nav-link" href="/photo">Pictures <span class="sr-only">(current)</span></a>
+          </li>
+          <!-- <li class="nav-item">
+            <a class="nav-link" href="/video">Video</a>
+          </li> -->
+          <li class="nav-item">
+            <a class="nav-link" href="/webcam">Camera</a>
+          </li>
+        </ul>
+      </div>
+   </nav>
+  </header>
     <!--Body -->
+  <body>
      <div class="container">
-       <form>
-         <div class="form-group">
-           <label for="exampleFormControlFile1">Example file input</label>
-           <input type="file" class="form-control-file" id="exampleFormControlFile1">
+       <div>
+          <h4>Por favor insira a imagem a identificar!</h4>
+       </div>
+       <div class="input-group">
+         <div class="input-group-prepend" >
+           <a class="custom-file-upload"><label class="input-group-text"
+               id="inputGroupFileAddon01">Upload</label></a>
          </div>
-       </form>
+         <div class="custom-file">
+           <input type="file" class="custom-file-input" id="inputGroupFile01"
+             aria-describedby="inputGroupFileAddon01" onchange="readURL(this)">
+           <label class="custom-file-label text-truncate"  for="inputGroupFile01">Choose file</label>
+         </div>
+       </div>
+       <div class="mt-1">
+           <div class="Button-1">
+             <button type="button" id="Detect" class="btn btn-primary" disabled="">Detect Faces</button>
+          </div>
+          <div  style="position: relative">
+            <img id="Picture"  src="#" alt="your image"  style=""/>
+            <canvas id="overlay" />
+          </div>
+       </div>
      </div>
   </body>
 
+  <!-- Framework Js -->
+  <script type="text/javascript" src="{{ url_for('static', filename='js/jquery.min.js')}}"></script>
+  <!-- Bootstrap tooltips -->
+  <script type="text/javascript" src="{{ url_for('static', filename='js/popper.min.js')}}"></script>
+  <!-- Bootstrap core JavaScript -->
+  <script type="text/javascript" src="{{ url_for('static', filename='js/bootstrap.min.js')}}"></script>
+  <!-- MDB core JavaScript -->
+  <script type="text/javascript" src="{{ url_for('static', filename='js/mdb.min.js')}}"></script>
+  <!-- JavaScript -->
+  <script type="text/javascript" src="{{ url_for('static', filename='js/load_file.js')}}"></script>
+  <!-- Script Js -->
+   <script type="text/javascript" src="{{ url_for('static', filename='js/face-api/dist/face-api.js')}}"></script>
 
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+   <!-- <script type="text/javascript" src="{{ url_for('static', filename='js/face-api/dist/face-api.js')}}"></script> -->
+ <!-- Script Js -->
+  <script>
+    const MODEL_URL = "{{ url_for('static', filename='js/face-api/weights/')}}"
+    // const detectButton=document.querySelector('#Detect')
 
+    async function app(){
+        console.log('Loading models..');
+        await faceapi.loadSsdMobilenetv1Model(MODEL_URL)
+        await faceapi.loadFaceLandmarkModel(MODEL_URL)
+        await faceapi.loadFaceRecognitionModel(MODEL_URL)
+     }
+
+    detectButton.onclick=async function(){
+      const img = document.getElementById('Picture')
+      const canvas=document.getElementById('overlay');
+      const displaySize = { width: img.width, height: img.height }
+
+      console.log("Detecting")
+      faceapi.matchDimensions(canvas, displaySize)
+      let detections = await faceapi.detectAllFaces(img)
+      const resizedDetections = faceapi.resizeResults(detections, displaySize)
+      faceapi.draw.drawDetections(canvas, resizedDetections)
+    }
+
+
+   app()
+  </script>
 
 </html>

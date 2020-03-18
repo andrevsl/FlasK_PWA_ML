@@ -1,4 +1,3 @@
-
 <!DOCTYPE HTML>
 <html lang="en">
   <head>
@@ -16,8 +15,9 @@
     <!-- Material Design Bootstrap -->
     <link rel="stylesheet" href="{{ url_for('static', filename='css/mdb.min.css')}}">
     <!-- Your custom styles (optional) -->
+    {% block styles %}
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css')}}">
-
+    {% endblock %}
   </head>
   <body>
     <header>
@@ -32,9 +32,9 @@
           <li class="nav-item active">
             <a class="nav-link" href="/photo">Pictures <span class="sr-only">(current)</span></a>
           </li>
-          <!-- <li class="nav-item">
+          <li class="nav-item">
             <a class="nav-link" href="/video">Video</a>
-          </li> -->
+          </li>
           <li class="nav-item">
             <a class="nav-link" href="/webcam">Camera</a>
           </li>
@@ -44,28 +44,39 @@
   </header>
     <!--Body -->
   <body>
-   <h1 class="ml-2">App for Face Detection using face-api.js<h1/>
-   <h2 class="ml-2">Under Development </h2>
-   <p class="ml-3"> - Photo Dectection being Tested</p>
-   <p class="ml-3"> - Video Capture being Tested but screenshot not </p>
-   <p>face-api.js: https://github.com/justadudewhohacks/face-api.js/</p>
-
-
+     <div class="container">
+        <div>
+          <h4 class="text-1">WebCam Capture</h4>
+        </div>
+        <div id="screenshot" style="text-align:center">
+            <video autoplay muted  id="webcam"  style="border:1px solid #ccc!important;width:100%;height:300px"></video>
+            <img id="screenshot-img" src="">
+            <canvas style="display:none;"></canvas>
+            <div class="row" style=" justify-content: center!important;">
+                <p class="col-xs-12 col-sm-4" style="text-align:center">
+                  <button class="capture-button" onclick="">Capture video</button>
+                </p>
+                <p class="col-xs-12 col-sm-4" style="text-align:center">
+                  <button id="screenshot-button" disabled="">Take screenshot</button>
+                </p>
+        </div>
+      </div>
+     </div>
   </body>
 
+  <!-- Framework Js -->
+  <script type="text/javascript" src="{{ url_for('static', filename='js/jquery.min.js')}}"></script>
+  <!-- Bootstrap tooltips -->
+  <script type="text/javascript" src="{{ url_for('static', filename='js/popper.min.js')}}"></script>
+  <!-- Bootstrap core JavaScript -->
+  <script type="text/javascript" src="{{ url_for('static', filename='js/bootstrap.min.js')}}"></script>
+  <!-- MDB core JavaScript -->
+  <script type="text/javascript" src="{{ url_for('static', filename='js/mdb.min.js')}}"></script>
+ <!-- Script Js -->
+  <script type="text/javascript" src="{{ url_for('static', filename='js/dist/face-api.js')}}"></script>
 
-  <!-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script> -->
-  <!-- JQuery -->
+ <script type="text/javascript" src="{{ url_for('static', filename='js/ml_api.js')}}"></script>
 
-    <script type="text/javascript" src="{{ url_for('static', filename='js/jquery.min.js')}}"></script>
-    <!-- Bootstrap tooltips -->
-    <script type="text/javascript" src="{{ url_for('static', filename='js/popper.min.js')}}"></script>
-    <!-- Bootstrap core JavaScript -->
-    <script type="text/javascript" src="{{ url_for('static', filename='js/bootstrap.min.js')}}"></script>
-    <!-- MDB core JavaScript -->
-    <script type="text/javascript" src="{{ url_for('static', filename='js/mdb.min.js')}}"></script>
 
 
 </html>

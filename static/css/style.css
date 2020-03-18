@@ -1,0 +1,56 @@
+h4{
+  text-align: center;
+  margin-top: 5px;
+}
+.Button-1{
+  display:flex;
+  justify-content:center;
+  flex-direction: row;
+}
+#Detect{
+      z-index: 1000;
+}
+#Picture {
+
+  max-width:100%!important;
+  max-height:80%!important;
+  min-width: 300px;
+  min-height:200px!important;
+  display: none;
+  border: : 10px solid #ccc;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#screenshot-img {
+    width: 100%;
+    height: 300px;
+    background: rgba(255,255,255,0.5)!important;
+    border: 1px solid #ccc!important;
+}
+
+.video-1{
+  background: rgba(255,255,255,0.5)!important;
+  border: 1px solid #ccc!important;
+}
+
+.video-1 {
+    width: 100%!important;
+    height: 300px!important;
+}
+
+
+.text-1{
+  text-align: center!important;
+}
+
+
+#overlay {
+    position: absolute;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+
+}
